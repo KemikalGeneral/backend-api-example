@@ -1,0 +1,110 @@
+[
+	{
+		"id": 1,
+		"title": "Senior Frontend Developer",
+		"department": "Engineering",
+		"location": "San Francisco, CA",
+		"type": "Full-time",
+		"description": "We are looking for an experienced frontend developer to join our team and build amazing user experiences.",
+		"posted": "2 days ago"
+	},
+	{
+		"id": 2,
+		"title": "Product Designer",
+		"department": "Design",
+		"location": "New York, NY",
+		"type": "Full-time",
+		"description": "Join our design team to create beautiful and intuitive products that users love.",
+		"posted": "3 days ago"
+	},
+	{
+		"id": 3,
+		"title": "Marketing Manager",
+		"department": "Marketing",
+		"location": "Remote",
+		"type": "Full-time",
+		"description": "Lead our marketing initiatives and help us grow our brand presence globally.",
+		"posted": "5 days ago"
+	},
+	{
+		"id": 4,
+		"title": "Backend Engineer",
+		"department": "Engineering",
+		"location": "Austin, TX",
+		"type": "Full-time",
+		"description": "Build scalable backend systems and APIs that power our platform.",
+		"posted": "1 week ago"
+	},
+	{
+		"id": 5,
+		"title": "Data Analyst",
+		"department": "Analytics",
+		"location": "Boston, MA",
+		"type": "Contract",
+		"description": "Analyze data and provide insights to drive business decisions.",
+		"posted": "1 week ago"
+	},
+	{
+		"id": 6,
+		"title": "Customer Success Manager",
+		"department": "Customer Success",
+		"location": "Remote",
+		"type": "Full-time",
+		"description": "Help our customers succeed and ensure they get the most value from our products.",
+		"posted": "2 weeks ago"
+	},
+	{
+		"id": 7,
+		"title": "DevOps Engineer",
+		"department": "Engineering",
+		"location": "Seattle, WA",
+		"type": "Full-time",
+		"description": "Maintain and improve our infrastructure and deployment processes.",
+		"posted": "2 weeks ago"
+	},
+	{
+		"id": 8,
+		"title": "Content Writer",
+		"department": "Marketing",
+		"location": "Remote",
+		"type": "Part-time",
+		"description": "Create engaging content that resonates with our audience.",
+		"posted": "3 weeks ago"
+	},
+	{
+		"id": 9,
+		"title": "UX Researcher",
+		"department": "Design",
+		"location": "San Francisco, CA",
+		"type": "Full-time",
+		"description": "Conduct user research to inform product decisions and improve user experience.",
+		"posted": "3 weeks ago"
+	},
+	{
+		"id": 10,
+		"title": "Sales Representative",
+		"department": "Sales",
+		"location": "Chicago, IL",
+		"type": "Full-time",
+		"description": "Drive revenue growth by building relationships with new and existing customers.",
+		"posted": "1 month ago"
+	},
+	{
+		"id": 11,
+		"title": "Mobile Developer",
+		"department": "Engineering",
+		"location": "Los Angeles, CA",
+		"type": "Full-time",
+		"description": "Build native mobile applications for iOS and Android platforms.",
+		"posted": "1 month ago"
+	},
+	{
+		"id": 12,
+		"title": "HR Coordinator",
+		"department": "Human Resources",
+		"location": "New York, NY",
+		"type": "Full-time",
+		"description": "Support our HR team in recruitment, onboarding, and employee relations.",
+		"posted": "1 month ago"
+	}
+]

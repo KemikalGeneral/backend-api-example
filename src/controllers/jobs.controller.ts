@@ -19,8 +19,6 @@ export class JobsController {
 	public constructor(private readonly service: JobsService) {
 	}
 
-	// test comment for testing hook
-
 	/**
 	 * Handle GET /jobs
 	 *

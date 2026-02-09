@@ -2,6 +2,9 @@
 
 ![License](https://img.shields.io/badge/license-MIT-green)
 ![Node](https://img.shields.io/badge/node-18.x-brightgreen)
+![CI](https://github.com/KemikalGeneral/backend-api-example/actions/workflows/ci.yml/badge.svg)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178c6?logo=typescript&logoColor=white)
+![npm](https://img.shields.io/badge/package%20manager-npm-cb3837?logo=npm)
 
 A TypeScript + Express REST API for managing job postings, built using a layered architecture with validation, role-based access control, and clean separation of concerns.
 
@@ -26,24 +29,27 @@ Originally created as a time-boxed take-home exercise, this project is now being
 
 Routes > Controllers > Services > Repositories
 
-
 ## Responsibilities
 
 **Routes**
+
 - Define endpoints
 - Attach middleware
 - Delegate to controllers
 
 **Controllers**
+
 - Handle HTTP concerns only
 - Validate inputs
 - Map responses & status codes
 
 **Services**
+
 - Contain business logic
 - Enforce application rules
 
 **Repositories**
+
 - Handle data access & storage
 - Isolated behind an interface-friendly layer
 
@@ -60,11 +66,13 @@ npm install
 ```
 
 Run in dev mode:
+
 ```bash
 npm run dev
 ```
 
 Server runs at:
+
 ```bash
 http://localhost:3000
 ```
@@ -75,9 +83,9 @@ http://localhost:3000
 
 Environment variables:
 
-| Variable  | Description  | Default  |
-|-----------|--------------|----------|
-| PORT      | Server port  | 3000     |
+| Variable | Description | Default |
+| -------- | ----------- | ------- |
+| PORT     | Server port | 3000    |
 
 Example:
 
@@ -94,7 +102,7 @@ PORT=8080 npm run dev
 - IDs generated as maxId + 1
 - No persistence between restarts
 
-This is intentional for simplicity. The repository layer can be replaced with a database-backed implementation without 
+This is intentional for simplicity. The repository layer can be replaced with a database-backed implementation without
 changing higher layers.
 
 ---
@@ -106,7 +114,7 @@ changing higher layers.
 - Treated as display-only text
 - Existing seed values preserved
 - New jobs receive posted = "just now"
-- Clients cannot override this field 
+- Clients cannot override this field
 
 In a production system this would be derived from a timestamp.
 
@@ -132,7 +140,7 @@ Bearer user-token
 Behaviour:
 
 | Case           | Result  |
-|----------------|---------|
+| -------------- | ------- |
 | Missing token  | 401     |
 | Invalid format | 401     |
 | Non-admin user | 403     |
@@ -147,15 +155,18 @@ Implementation is intentionally minimal and designed to be replaced with JWT/OID
 Validation uses explicit helper functions rather than schema libraries.
 
 **Create**
+
 - All required fields must be present
 - Strings must be non-empty after trimming
 
 **Patch**
+
 - Partial updates allowed
 - Must include at least one valid updatable field
 - No-op updates rejected
 
 **Route Params**
+
 - IDs validated at controller boundary
 - Invalid IDs return 400
 
@@ -183,7 +194,7 @@ GET /jobs/:id
 
 **Admin Only**
 
-``` 
+```
 POST /jobs
 PATCH /jobs/:id
 DELETE /jobs/:id
@@ -416,4 +427,3 @@ curl -X DELETE http://localhost:3000/jobs/1 \
 curl -X DELETE http://localhost:3000/jobs/abc \
 -H "Authorization: Bearer admin-token"
 ```
-

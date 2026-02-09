@@ -16,7 +16,8 @@
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },
   "lint-staged": {
-    "*.{ts, tsx, js, cjs, mjs}": [
+    "*.{ts,tsx,js,cjs,mjs}": [
+      "prettier --write",
       "eslint --fix"
     ],
     "*.{json,md,yml,yaml}": [

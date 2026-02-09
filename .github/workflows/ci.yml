@@ -35,6 +35,10 @@ jobs:
       - name: Lint
         run: npm run lint
 
+      # Format check
+      - name: Format check
+        run: npm run format
+
       # Tests (currently placeholder TODO)
       - name: Test
         run: npm test

@@ -4,6 +4,7 @@ import { authenticate } from './middleware/auth'
 import { requireAdmin } from './middleware/requireAdmin'
 import { JobsRepository } from './repositories/jobs.repository'
 import {jobsRoutes} from './routes/jobs.routes'
+import {errorHandler} from './middleware/errorHandler'
 
 /**
  * Application bootstrap.
@@ -34,6 +35,8 @@ export const createApp = (): Express => {
 	})
 
 	app.use('/jobs', jobsRoutes())
+
+	app.use(errorHandler)
 
 	// Test auth
 	// no header -> curl http://localhost:3000/admin-check -> 401

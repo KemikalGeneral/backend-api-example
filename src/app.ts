@@ -1,10 +1,9 @@
 import express, {type Express, type Request, type Response} from 'express'
-import { JobsRepository } from './repositories/jobs.repository'
-import {jobsRoutes} from './routes/jobs.routes'
 
-// Tests
 import { authenticate } from './middleware/auth'
 import { requireAdmin } from './middleware/requireAdmin'
+import { JobsRepository } from './repositories/jobs.repository'
+import {jobsRoutes} from './routes/jobs.routes'
 
 /**
  * Application bootstrap.

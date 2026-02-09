@@ -1,6 +1,7 @@
 import {type Request, type Response} from 'express'
-import {JobsService} from '../services/jobs.service'
+
 import {type CreateJobData, type UpdateJobData} from '../models/job'
+import {JobsService} from '../services/jobs.service'
 import {validateCreateJob, validateUpdateJob} from '../validation/job.validation'
 
 /**

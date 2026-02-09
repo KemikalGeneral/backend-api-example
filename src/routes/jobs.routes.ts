@@ -1,9 +1,10 @@
 import {Router} from 'express'
+
 import {JobsController} from '../controllers/jobs.controller'
-import {JobsRepository} from '../repositories/jobs.repository'
-import {JobsService} from '../services/jobs.service'
 import {authenticate} from '../middleware/auth'
 import {requireAdmin} from '../middleware/requireAdmin'
+import {JobsRepository} from '../repositories/jobs.repository'
+import {JobsService} from '../services/jobs.service'
 
 /**
  * Jobs routes.

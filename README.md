@@ -1,5 +1,8 @@
 # Jobs API — TypeScript Express Example
 
+![License](https://img.shields.io/badge/license-MIT-green)
+![Node](https://img.shields.io/badge/node-18.x-brightgreen)
+
 A TypeScript + Express REST API for managing job postings, built using a layered architecture with validation, role-based access control, and clean separation of concerns.
 
 Originally created as a time-boxed take-home exercise, this project is now being expanded as a reference-quality backend example.

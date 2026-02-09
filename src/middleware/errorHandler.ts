@@ -1,5 +1,6 @@
-import type {NextFunction, Request, Response} from 'express'
 import {sendError} from '../utils/errors'
+
+import type {NextFunction, Request, Response} from 'express'
 
 /**
  * Global Express error handler.
@@ -34,10 +35,8 @@ export const errorHandler = (
 	// - dev: full error
 	// - prod: minimal message
 	if (isProduction) {
-		// eslint-disable-next-line no-console
 		console.error('Unhandled error: ', err instanceof Error ? err.message : err)
 	} else {
-		// eslint-disable-next-line no-console
 		console.error('Unhandled error (dev): ', err)
 	}
 

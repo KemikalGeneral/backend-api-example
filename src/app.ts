@@ -1,10 +1,10 @@
 import express, {type Express, type Request, type Response} from 'express'
 
 import { authenticate } from './middleware/auth'
+import {errorHandler} from './middleware/errorHandler'
 import { requireAdmin } from './middleware/requireAdmin'
 import { JobsRepository } from './repositories/jobs.repository'
 import {jobsRoutes} from './routes/jobs.routes'
-import {errorHandler} from './middleware/errorHandler'
 
 /**
  * Application bootstrap.

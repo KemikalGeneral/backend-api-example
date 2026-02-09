@@ -2,6 +2,7 @@ import {type Request, type Response} from 'express'
 
 import {type CreateJobData, type UpdateJobData} from '../models/job'
 import {JobsService} from '../services/jobs.service'
+import {sendError} from '../utils/errors'
 import {validateCreateJob, validateUpdateJob} from '../validation/job.validation'
 
 /**
@@ -45,7 +46,7 @@ export class JobsController {
 
 		// Validate ID is a number
 		if (Number.isNaN(id)) {
-			res.status(400).json({message: 'Invalid Job ID'})
+			sendError(res, 400, 'INVALID_ID', 'Invalid Job ID')
 			return
 		}
 
@@ -54,7 +55,7 @@ export class JobsController {
 
 		// Handle Job not found
 		if (!currentJob) {
-			res.status(404).json({message: 'Job not found'})
+			sendError(res,404, 'NOT_FOUND', 'Job not found')
 			return
 		}
 
@@ -73,7 +74,7 @@ export class JobsController {
 		const errors = validateCreateJob(req.body)
 
 		if (errors.length) {
-			res.status(400).json({message: 'Invalid request body', errors})
+			sendError(res, 400, 'VALIDATION_ERROR', 'Validation failed', {errors})
 			return
 		}
 
@@ -100,7 +101,7 @@ export class JobsController {
 
 		// Validate ID
 		if (Number.isNaN(id)) {
-			res.status(400).json({message: 'Invalid Job ID'})
+			sendError(res, 400, 'INVALID_ID', 'Invalid Job ID')
 			return
 		}
 
@@ -108,7 +109,7 @@ export class JobsController {
 		const errors = validateUpdateJob(req.body)
 
 		if (errors.length) {
-			res.status(400).json({message: 'Invalid request body', errors})
+			sendError(res, 400, 'VALIDATION_ERROR', 'Validation failed', {errors})
 			return
 		}
 
@@ -124,7 +125,7 @@ export class JobsController {
 		const updatedJob = this.service.updateJob(id, jobData)
 
 		if (!updatedJob) {
-			res.status(404).json({message: 'Job not found'})
+			sendError(res, 404, 'NOT_FOUND', 'Job not found')
 			return
 		}
 
@@ -141,14 +142,14 @@ export class JobsController {
 
 		// Validate ID
 		if (Number.isNaN(id)) {
-			res.status(400).json({message: 'Invalid Job ID'})
+			sendError(res, 400, 'INVALID_ID', 'Invalid Job ID')
 			return
 		}
 
 		const deletedJob = this.service.deleteJob(id)
 
 		if (!deletedJob) {
-			res.status(404).json({message: 'Job not found'})
+			sendError(res, 404, 'NOT_FOUND', 'Job not found')
 			return
 		}
 

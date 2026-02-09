@@ -1,5 +1,7 @@
 import {type NextFunction, type Request, type Response} from 'express'
 
+import {sendError} from '../utils/errors'
+
 /**
  * Authentication Middleware.
  *
@@ -20,7 +22,7 @@ export const authenticate = (req: Request, res: Response, next: NextFunction) =>
 
 	// No auth header -> unauthenticated
 	if (!header) {
-		res.status(401).json({message: 'Missing Auth header'})
+		sendError(res, 401, 'UNAUTHENTICATED', 'Authentication required')
 		return
 	}
 
@@ -28,7 +30,7 @@ export const authenticate = (req: Request, res: Response, next: NextFunction) =>
 	const [scheme, token] = header.split(' ')
 
 	if (scheme !== 'Bearer' || !token) {
-		res.status(401).json({message: 'Invalid Auth header format'})
+		sendError(res, 401, 'UNAUTHENTICATED', 'Invalid auth header format')
 		return
 	}
 
@@ -46,5 +48,5 @@ export const authenticate = (req: Request, res: Response, next: NextFunction) =>
 	}
 
 	// Unknown token -> unauthenticated
-	res.status(401).json({message: 'Invalid token'})
+	sendError(res, 401, 'UNAUTHENTICATED', 'Invalid token')
 }

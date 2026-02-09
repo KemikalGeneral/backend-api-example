@@ -1,5 +1,7 @@
 import {type NextFunction, type Request, type Response} from 'express'
 
+import {sendError} from '../utils/errors'
+
 /**
  * Authorisation guard to ensure the user is admin.
  *
@@ -9,13 +11,13 @@ export const requireAdmin = (req: Request, res: Response, next: NextFunction) =>
 
 	// If there's no user, the route has not been authenticated
 	if (!req.user) {
-		res.status(401).json({message: 'Unauthorised'})
+		sendError(res, 401, 'UNAUTHENTICATED', 'Unauthorised')
 		return
 	}
 
 	// Authenticated but not the required role
 	if (req.user.role !== 'admin') {
-		res.status(403).json({message: 'Not allowed'})
+		sendError(res, 403, 'FORBIDDEN', 'Not allowed')
 		return
 	}
 

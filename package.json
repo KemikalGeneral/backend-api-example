@@ -1,44 +1,55 @@
 {
-	"name": "backenddevelopertest",
-	"version": "1.0.0",
-	"description": "Example Express + TypeScript API",
-	"main": "dist/server.js",
-	"scripts": {
-		"build": "tsc",
-		"dev": "nodemon --exec ts-node src/server.ts",
-		"format": "prettier . --check",
-		"format:fix": "prettier . --write",
-		"lint": "eslint .",
-		"lint:fix": "eslint . --fix",
-		"start": "node dist/server.js",
-		"test": "echo \"TODO: add tests\" && exit 0",
-		"typecheck": "tsc -p tsconfig.json --noEmit"
-	},
-	"keywords": [],
-	"author": "Richard Denton",
-	"license": "MIT",
-	"engines": {
-		"node": ">=18"
-	},
-	"dependencies": {
-		"express": "^5.2.1"
-	},
-	"devDependencies": {
-		"@eslint/compat": "^2.0.2",
-		"@eslint/eslintrc": "^3.3.3",
-		"@eslint/js": "^9.39.2",
-		"@types/express": "^5.0.6",
-		"@types/node": "^25.0.10",
-		"eslint": "^9.39.2",
-		"eslint-config-prettier": "^10.1.8",
-		"eslint-import-resolver-typescript": "^4.4.4",
-		"eslint-plugin-import": "^2.32.0",
-		"eslint-plugin-unused-imports": "^4.4.1",
-		"globals": "^17.3.0",
-		"nodemon": "^3.1.11",
-		"prettier": "^3.8.1",
-		"ts-node": "^10.9.2",
-		"typescript": "^5.9.3",
-		"typescript-eslint": "^8.54.0"
-	}
+  "name": "backenddevelopertest",
+  "version": "1.0.0",
+  "description": "Example Express + TypeScript API",
+  "main": "dist/server.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "nodemon --exec ts-node src/server.ts",
+    "format": "prettier . --check",
+    "format:fix": "prettier . --write",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "prepare": "husky",
+    "start": "node dist/server.js",
+    "test": "echo \"TODO: add tests\" && exit 0",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "lint-staged": {
+    "*.{ts, tsx, js, cjs, mjs}": [
+      "eslint --fix"
+    ],
+    "*.{json,md,yml,yaml}": [
+      "prettier --write"
+    ]
+  },
+  "keywords": [],
+  "author": "Richard Denton",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "@eslint/compat": "^2.0.2",
+    "@eslint/eslintrc": "^3.3.3",
+    "@eslint/js": "^9.39.2",
+    "@types/express": "^5.0.6",
+    "@types/node": "^25.0.10",
+    "eslint": "^9.39.2",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-import-resolver-typescript": "^4.4.4",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-unused-imports": "^4.4.1",
+    "globals": "^17.3.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.7",
+    "nodemon": "^3.1.11",
+    "prettier": "^3.8.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.54.0"
+  }
 }

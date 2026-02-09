@@ -1,0 +1,40 @@
+name: CI
+
+# Runs on every push to 'main', and every pull request
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout repo code
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Install Node (match the version in .nvmrc)
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      # Install dependencies
+      - name: Install deps
+        run: npm ci
+
+      # Typescript compile check (no emit)
+      - name: Typecheck
+        run: npm run typecheck
+
+      # Lint check
+      - name: Lint
+        run: npm run lint
+
+      # Tests (currently placeholder TODO)
+      - name: Test
+        run: npm test

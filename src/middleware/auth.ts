@@ -1,6 +1,6 @@
-import {type NextFunction, type Request, type Response} from 'express'
+import { type NextFunction, type Request, type Response } from 'express'
 
-import {sendError} from '../utils/errors'
+import { sendError } from '../utils/errors'
 
 /**
  * Authentication Middleware.
@@ -37,12 +37,12 @@ export const authenticate = (req: Request, res: Response, next: NextFunction) =>
 	// Minimal token-to-role mapping for demonstration purposes.
 	// In a real system this would be replaced with better verification, e.g. JWT/OIDC.
 	if (token === 'admin-token') {
-		req.user = {role: 'admin'}
+		req.user = { role: 'admin' }
 		next()
 		return
 	}
 	if (token === 'user-token') {
-		req.user = {role: 'user'}
+		req.user = { role: 'user' }
 		next()
 		return
 	}

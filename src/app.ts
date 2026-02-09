@@ -1,10 +1,10 @@
-import express, {type Express, type Request, type Response} from 'express'
+import express, { type Express, type Request, type Response } from 'express'
 
 import { authenticate } from './middleware/auth'
-import {errorHandler} from './middleware/errorHandler'
+import { errorHandler } from './middleware/errorHandler'
 import { requireAdmin } from './middleware/requireAdmin'
 import { JobsRepository } from './repositories/jobs.repository'
-import {jobsRoutes} from './routes/jobs.routes'
+import { jobsRoutes } from './routes/jobs.routes'
 
 /**
  * Application bootstrap.
@@ -31,7 +31,7 @@ export const createApp = (): Express => {
 
 	// Health check for quick sanity test
 	app.get('/healthCheck', (_req: Request, res: Response) => {
-		res.status(200).json({status: 'ok'})
+		res.status(200).json({ status: 'ok' })
 	})
 
 	app.use('/jobs', jobsRoutes())

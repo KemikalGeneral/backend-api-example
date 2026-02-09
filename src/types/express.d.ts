@@ -1,5 +1,5 @@
 import 'express-serve-static-core'
-import {type AuthenticatedUser} from '../models/auth'
+import { type AuthenticatedUser } from '../models/auth'
 
 /**
  * Express type augmentation.

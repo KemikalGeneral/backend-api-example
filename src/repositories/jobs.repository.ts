@@ -1,7 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 
-import {type CreateJobData, type Job, UpdateJobData} from '../models/job'
+import { type CreateJobData, type Job, UpdateJobData } from '../models/job'
 
 /**
  * JobsRepository
@@ -28,7 +28,7 @@ export class JobsRepository {
 
 	// Get By ID
 	public getById(id: number): Job | undefined {
-		return this.jobs.find(job => job.id === id)
+		return this.jobs.find((job) => job.id === id)
 	}
 
 	// Create
@@ -48,7 +48,7 @@ export class JobsRepository {
 
 	// Update
 	public update(id: number, jobData: UpdateJobData): Job | undefined {
-		const index = this.jobs.findIndex(job => job.id === id)
+		const index = this.jobs.findIndex((job) => job.id === id)
 
 		if (index === -1) return undefined
 
@@ -66,7 +66,7 @@ export class JobsRepository {
 	public delete(id: number): boolean {
 		const lengthBefore = this.jobs.length
 
-		this.jobs = this.jobs.filter(job => job.id !== id)
+		this.jobs = this.jobs.filter((job) => job.id !== id)
 
 		return this.jobs.length !== lengthBefore
 	}

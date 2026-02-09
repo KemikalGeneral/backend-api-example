@@ -1,6 +1,6 @@
-import {sendError} from '../utils/errors'
+import { sendError } from '../utils/errors'
 
-import type {NextFunction, Request, Response} from 'express'
+import type { NextFunction, Request, Response } from 'express'
 
 /**
  * Global Express error handler.
@@ -18,7 +18,6 @@ export const errorHandler = (
 	res: Response,
 	_next: NextFunction
 ): void => {
-
 	// If headers have already been sent, let Express handle it
 	if (res.headersSent) return
 
@@ -29,7 +28,6 @@ export const errorHandler = (
 		sendError(res, 400, 'INVALID_REQUEST', 'Malformed JSON in request body')
 		return
 	}
-
 
 	// Environment-aware logging:
 	// - dev: full error

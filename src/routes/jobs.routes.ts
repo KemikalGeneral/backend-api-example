@@ -1,10 +1,10 @@
-import {Router} from 'express'
+import { Router } from 'express'
 
-import {JobsController} from '../controllers/jobs.controller'
-import {authenticate} from '../middleware/auth'
-import {requireAdmin} from '../middleware/requireAdmin'
-import {JobsRepository} from '../repositories/jobs.repository'
-import {JobsService} from '../services/jobs.service'
+import { JobsController } from '../controllers/jobs.controller'
+import { authenticate } from '../middleware/auth'
+import { requireAdmin } from '../middleware/requireAdmin'
+import { JobsRepository } from '../repositories/jobs.repository'
+import { JobsService } from '../services/jobs.service'
 
 /**
  * Jobs routes.
@@ -16,7 +16,6 @@ import {JobsService} from '../services/jobs.service'
  * app.use('/jobs', jobsRoutes())
  */
 export const jobsRoutes = (): Router => {
-
 	// Create a dedicated router for /jobs endpoints
 	const router = Router()
 

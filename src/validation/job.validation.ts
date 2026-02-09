@@ -1,4 +1,4 @@
-import {type CreateJobData, type UpdateJobData} from '../models/job'
+import { type CreateJobData, type UpdateJobData } from '../models/job'
 
 /**
  * Validation helpers for Job create and update requests.
@@ -68,14 +68,15 @@ export const validateUpdateJob = (body: unknown): string[] => {
 	]
 
 	// PATCH requests must include at least one updatable field to avoid no-op updates
-	const hasAnyFields = allowedFields.some(field => candidateJob[field] !== undefined)
+	const hasAnyFields = allowedFields.some((field) => candidateJob[field] !== undefined)
 
 	if (!hasAnyFields) return ['Request body must include at least one updatable field']
 
 	for (const field of allowedFields) {
 		const value = candidateJob[field]
 
-		if (value !== undefined && !isNotEmptyString(value)) errors.push(`${field} is a required field`)
+		if (value !== undefined && !isNotEmptyString(value))
+			errors.push(`${field} is a required field`)
 	}
 
 	return errors

@@ -1,9 +1,9 @@
-import {type Request, type Response} from 'express'
+import { type Request, type Response } from 'express'
 
-import {type CreateJobData, type UpdateJobData} from '../models/job'
-import {JobsService} from '../services/jobs.service'
-import {sendError} from '../utils/errors'
-import {validateCreateJob, validateUpdateJob} from '../validation/job.validation'
+import { type CreateJobData, type UpdateJobData } from '../models/job'
+import { JobsService } from '../services/jobs.service'
+import { sendError } from '../utils/errors'
+import { validateCreateJob, validateUpdateJob } from '../validation/job.validation'
 
 /**
  * Controller for Job endpoints.
@@ -16,8 +16,7 @@ import {validateCreateJob, validateUpdateJob} from '../validation/job.validation
  * app.get('/jobs', controller.getAll)
  */
 export class JobsController {
-	public constructor(private readonly service: JobsService) {
-	}
+	public constructor(private readonly service: JobsService) {}
 
 	/**
 	 * Handle GET /jobs
@@ -26,7 +25,6 @@ export class JobsController {
 	 * @param res
 	 */
 	public getAll = (_req: Request, res: Response) => {
-
 		// Request data from the service
 		const allJobs = this.service.getAllJobs()
 
@@ -40,7 +38,6 @@ export class JobsController {
 	 * @param res
 	 */
 	public getById = (req: Request, res: Response) => {
-
 		// Extract ID from URL params
 		const id = Number(req.params.id)
 
@@ -55,7 +52,7 @@ export class JobsController {
 
 		// Handle Job not found
 		if (!currentJob) {
-			sendError(res,404, 'NOT_FOUND', 'Job not found')
+			sendError(res, 404, 'NOT_FOUND', 'Job not found')
 			return
 		}
 
@@ -69,12 +66,11 @@ export class JobsController {
 	 * @param res
 	 */
 	public create = (req: Request, res: Response) => {
-
 		// Validate incoming payload
 		const errors = validateCreateJob(req.body)
 
 		if (errors.length) {
-			sendError(res, 400, 'VALIDATION_ERROR', 'Validation failed', {errors})
+			sendError(res, 400, 'VALIDATION_ERROR', 'Validation failed', { errors })
 			return
 		}
 
@@ -95,7 +91,6 @@ export class JobsController {
 	 * Handle PATCH /jobs/:id
 	 */
 	public update = (req: Request, res: Response) => {
-
 		// Extract ID from URL params
 		const id = Number(req.params.id)
 
@@ -109,7 +104,7 @@ export class JobsController {
 		const errors = validateUpdateJob(req.body)
 
 		if (errors.length) {
-			sendError(res, 400, 'VALIDATION_ERROR', 'Validation failed', {errors})
+			sendError(res, 400, 'VALIDATION_ERROR', 'Validation failed', { errors })
 			return
 		}
 
@@ -136,7 +131,6 @@ export class JobsController {
 	 * Handle DELETE /jobs/:id
 	 */
 	public delete = (req: Request, res: Response) => {
-
 		// Extract ID from URL params
 		const id = Number(req.params.id)
 

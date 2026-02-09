@@ -1,4 +1,4 @@
-import {createApp} from './app'
+import { createApp } from './app'
 
 /**
  * Server entry point.
@@ -8,7 +8,7 @@ import {createApp} from './app'
  * @example
  * npm run dev
  */
-const startServer = ():void => {
+const startServer = (): void => {
 	const app = createApp()
 	const port = Number(process.env.PORT) || 3000
 

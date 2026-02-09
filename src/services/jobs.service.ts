@@ -1,5 +1,5 @@
-import {type CreateJobData, type Job, UpdateJobData} from '../models/job'
-import {JobsRepository} from '../repositories/jobs.repository'
+import { type CreateJobData, type Job, UpdateJobData } from '../models/job'
+import { JobsRepository } from '../repositories/jobs.repository'
 
 /**
  * JobsService
@@ -16,7 +16,7 @@ import {JobsRepository} from '../repositories/jobs.repository'
  * const jobs = service.getAllJobs()
  */
 export class JobsService {
-	public constructor(private readonly repo: JobsRepository ) {}
+	public constructor(private readonly repo: JobsRepository) {}
 
 	/**
 	 * Get All Jobs
@@ -34,7 +34,6 @@ export class JobsService {
 	 * @returns Job if found, undefined if not
 	 */
 	public getJobById(id: number): Job | undefined {
-
 		// Service passes data lookup to the repository
 		return this.repo.getById(id)
 	}

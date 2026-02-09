@@ -1,6 +1,6 @@
-import {type NextFunction, type Request, type Response} from 'express'
+import { type NextFunction, type Request, type Response } from 'express'
 
-import {sendError} from '../utils/errors'
+import { sendError } from '../utils/errors'
 
 /**
  * Authorisation guard to ensure the user is admin.
@@ -8,7 +8,6 @@ import {sendError} from '../utils/errors'
  * Assumes that authentication middleware has already populated req.user.
  */
 export const requireAdmin = (req: Request, res: Response, next: NextFunction) => {
-
 	// If there's no user, the route has not been authenticated
 	if (!req.user) {
 		sendError(res, 401, 'UNAUTHENTICATED', 'Unauthorised')

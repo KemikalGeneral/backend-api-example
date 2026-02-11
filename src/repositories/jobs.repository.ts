@@ -3,6 +3,26 @@ import path from 'path'
 
 import { type CreateJobData, type Job, UpdateJobData } from '../models/job'
 
+import type { SortOrder } from '../utils/pagination'
+
+/**
+ * Query option for listing Jobs.
+ */
+export type ListJobsOptions = {
+	page: number
+	limit: number
+	sortBy: keyof Job
+	order: SortOrder
+}
+
+/**
+ * Repository result for a paginated query.
+ */
+export type ListJobsResult = {
+	items: Job[]
+	total: number
+}
+
 /**
  * JobsRepository
  *
@@ -84,5 +104,56 @@ export class JobsRepository {
 		const maxId = this.jobs.reduce((max, job) => (job.id > max ? job.id : max), 0)
 
 		return maxId + 1
+	}
+
+	/**
+	 * Lists jobs with sorting and pagination.
+	 *
+	 * Notes:
+	 * - Sorting is applied before pagination so results are deterministic.
+	 * - Clone arrays to avoid mutating internal state.
+	 */
+	public listJobs(options: ListJobsOptions): ListJobsResult {
+		const { page, limit, sortBy, order } = options
+
+		// total count BEFORE slicing — needed for pagination meta
+		const total = this.jobs.length
+
+		// clone and sort so the internal array isn't mutated
+		const sortedJobs = [...this.jobs].sort((a, b) => {
+			const av = a[sortBy]
+			const bv = b[sortBy]
+
+			/**
+			 * Handle common types safely.
+			 * - strings: localeCompare
+			 * - numbers: numeric compare
+			 * - booleans: false < true
+			 */
+			let result = 0
+
+			// type-safe comparisons
+			if (typeof av === 'string' && typeof bv === 'string') {
+				result = av.localeCompare(bv)
+			} else if (typeof av === 'number' && typeof bv === 'number') {
+				result = av - bv
+			} else if (typeof av === 'boolean' && typeof bv === 'boolean') {
+				result = Number(av) - Number(bv)
+			} else {
+				// Fallback: stringify (keeps it stable even if field types change later)
+				result = String(av).localeCompare(String(bv))
+			}
+
+			// flip result if descending
+			return order === 'desc' ? -result : result
+		})
+
+		const start = (page - 1) * limit
+		const end = start + limit
+
+		return {
+			items: sortedJobs.slice(start, end),
+			total
+		}
 	}
 }

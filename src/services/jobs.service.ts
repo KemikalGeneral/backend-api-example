@@ -1,6 +1,8 @@
 import { type CreateJobData, type Job, UpdateJobData } from '../models/job'
 import { JobsRepository } from '../repositories/jobs.repository'
 
+import type { ListJobsOptions, ListJobsResult } from '../repositories/jobs.repository'
+
 /**
  * JobsService
  *
@@ -23,8 +25,12 @@ export class JobsService {
 	 *
 	 * @returns All jobs found
 	 */
-	public getAllJobs(): Job[] {
-		return this.repo.getAll()
+	// public getAllJobs(): Job[] {
+	// 	return this.repo.getAll()
+	// }
+
+	public getAllJobs(options: ListJobsOptions): ListJobsResult {
+		return this.repo.listJobs(options)
 	}
 
 	/**

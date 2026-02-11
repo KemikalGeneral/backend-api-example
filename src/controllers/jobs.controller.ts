@@ -1,9 +1,23 @@
 import { type Request, type Response } from 'express'
 
-import { type CreateJobData, type UpdateJobData } from '../models/job'
+import { type CreateJobData, type UpdateJobData, type Job } from '../models/job'
 import { JobsService } from '../services/jobs.service'
 import { sendError } from '../utils/errors'
+import { buildPaginationMeta, parsePaginationQuery } from '../utils/pagination'
 import { validateCreateJob, validateUpdateJob } from '../validation/job.validation'
+
+/**
+ * Allowed fields to sort by.
+ * Keep this tight so behaviour stays predictable.
+ */
+const ALLOWED_SORT_FIELDS: Array<keyof Job> = [
+	'id',
+	'title',
+	'department',
+	'location',
+	'type',
+	'posted'
+]
 
 /**
  * Controller for Job endpoints.
@@ -24,11 +38,30 @@ export class JobsController {
 	 * @param _req
 	 * @param res
 	 */
-	public getAll = (_req: Request, res: Response) => {
-		// Request data from the service
-		const allJobs = this.service.getAllJobs()
+	public getAll = (req: Request, res: Response) => {
+		try {
+			// Parse + sanitise query params
+			const { page, limit, sortBy, order } = parsePaginationQuery(
+				req.query as unknown as Record<string, unknown>,
+				ALLOWED_SORT_FIELDS as unknown as string[]
+			)
 
-		res.status(200).json(allJobs)
+			// Ask service for paginated data
+			const result = this.service.getAllJobs({
+				page,
+				limit,
+				sortBy: sortBy as keyof Job,
+				order
+			})
+
+			// Build metadata for client pagination UI
+			const meta = buildPaginationMeta({ page, limit, sortBy, order }, result.total)
+
+			// Return both data and meta
+			res.status(200).json({ data: result.items, meta })
+		} catch {
+			sendError(res, 500, 'INTERNAL_ERROR', 'An unexpected error occurred')
+		}
 	}
 
 	/**

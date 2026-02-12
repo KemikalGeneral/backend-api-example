@@ -37,8 +37,16 @@ export type ListJobsResult = {
 export class JobsRepository {
 	private jobs: Job[] = []
 
-	public constructor() {
-		this.jobs = this.loadSeedData()
+	/**
+	 * Create a JobsRepository.
+	 *
+	 * @param initialJobs Optional initial dataset (used by tests).
+	 * If not provided, the repository loads its default seeded dataset.
+	 */
+	constructor(initialJobs?: Job[]) {
+		// If tests pass in [], use it.
+		// If nothing is provided, fall back to the seeded dataset.
+		this.jobs = initialJobs ?? this.loadSeedData()
 	}
 
 	// Get All
